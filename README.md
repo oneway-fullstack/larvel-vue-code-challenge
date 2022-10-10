@@ -1,6 +1,7 @@
 ## Setup
 
-- Clone repository.
+- Clone repository.  
+- IMMEDIATELY - check repository into your github account and then make the changes as a new commit. (this helps us review the code you changed)
 - **Pleae do not fork the repository.**
 - Copy .env.example to .env and configure database settings.
 - Run the following commands to get a functional and seeded application:
