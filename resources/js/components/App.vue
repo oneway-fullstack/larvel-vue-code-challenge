@@ -32,11 +32,17 @@
         </nav>
 
         <main class="py-4">
+            <notifications group="global" :duration="6000" />
+            <confirm-delete ref="modal" />
             <router-view></router-view>
         </main>
     </div>
 </template>
 
 <script>
-export default {}
+import ConfirmDelete from "./ConfirmDelete";
+
+export default {
+    components: { ConfirmDelete }
+}
 </script>

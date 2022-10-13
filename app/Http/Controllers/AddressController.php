@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Address;
+use App\Http\Resources\Address as AddressResource;
+use App\Http\Resources\AddressView as AddressViewResource;
 use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -12,22 +14,24 @@ class AddressController extends Controller
     /**
      * Return a list of all addresses.
      *
-     * @return array
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function index(): array
+    public function index(): JsonResponse
     {
-        return Address::all()->toArray();
+        $addresses = Address::all();
+
+        return response()->json(AddressResource::collection($addresses), 200);
     }
 
     /**
      * Return a single address.
      *
      * @param Address $address
-     * @return Address
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function show(Address $address): Address
+    public function show(Address $address): JsonResponse
     {
-        return $address;
+        return response()->json(new AddressViewResource($address));
     }
 
     /**

@@ -3,31 +3,36 @@
 namespace App\Http\Controllers;
 
 use App\Owner;
+use App\Http\Resources\Owner as OwnerResource;
+use App\Http\Resources\OwnerView as OwnerViewResource;
 use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class OwnerController extends Controller
 {
     /**
      * Return a list of all owners.
      *
-     * @return array
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function index(): array
+    public function index(): JsonResponse
     {
-        return Owner::all()->toArray();
+        $owners = Owner::all();
+
+        return response()->json(OwnerResource::collection($owners), 200);
     }
 
     /**
      * Return a single owner.
      *
      * @param Owner $owner
-     * @return Owner
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function show(Owner $owner): Owner
+    public function show(Owner $owner): JsonResponse
     {
-        return $owner;
+        return response()->json(new OwnerViewResource($owner), 200);
     }
 
     /**

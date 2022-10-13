@@ -3,10 +3,11 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">Owners</div>
+                    <div class="card-header">Addresses</div>
 
                     <div class="card-body">
-                        <owner-table-component></owner-table-component>
+                        <address-aggregation-component></address-aggregation-component>
+                        <address-table-component></address-table-component>
                     </div>
                 </div>
             </div>

@@ -8,6 +8,13 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Owner extends Model
 {
     /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = ['first_name', 'last_name'];
+
+    /**
      * Get addresses associated with an owner.
      *
      * @return HasMany
@@ -25,5 +32,13 @@ class Owner extends Model
     public function cars(): HasMany
     {
         return $this->hasMany(Car::class);
+    }
+
+    /**
+     * Get the owner full name.
+     */
+    public function getNameAttribute()
+    {
+        return ucfirst($this->first_name) . ' ' . ucfirst($this->last_name);
     }
 }

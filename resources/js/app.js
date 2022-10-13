@@ -19,7 +19,10 @@ Vue.use(VueAxios, axios);
 
 import 'vuejs-datatable/dist/themes/bootstrap-4.esm';
 import {VuejsDatatableFactory} from 'vuejs-datatable';
+import Notifications from 'vue-notification'
+
 Vue.use(VuejsDatatableFactory);
+Vue.use(Notifications);
 
 /**
  * The following block of code may be used to automatically register your

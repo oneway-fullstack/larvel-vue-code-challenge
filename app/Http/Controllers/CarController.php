@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Car;
+use App\Http\Resources\Car as CarResource;
 use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -12,22 +13,24 @@ class CarController extends Controller
     /**
      * Return a list of all cars.
      *
-     * @return array
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function index(): array
+    public function index(): JsonResponse
     {
-        return Car::all()->toArray();
+        $cars = Car::all();
+
+        return response()->json(CarResource::collection($cars), 200);
     }
 
     /**
      * Return a single car.
      *
      * @param Car $car
-     * @return Car
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function show(Car $car): Car
+    public function show(Car $car): JsonResponse
     {
-        return $car;
+        return response()->json(new CarResource($car), 200);
     }
 
     /**
